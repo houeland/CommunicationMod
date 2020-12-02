@@ -78,6 +78,9 @@ public class CommandExecutor {
             case "wait":
                 executeWaitCommand(tokens);
                 return true;
+            case "debuginfo":
+                executeDebuginfoCommand();
+                return false;
 
             default:
                 logger.info("This should never happen.");
@@ -114,6 +117,7 @@ public class CommandExecutor {
             availableCommands.add("wait");
         }
         availableCommands.add("state");
+        availableCommands.add("debuginfo");
         return availableCommands;
     }
 
@@ -191,6 +195,37 @@ public class CommandExecutor {
 
     private static void executeStateCommand() {
         CommunicationMod.mustSendGameState = true;
+    }
+
+    public static void dumpDebugInfo() {
+        if (AbstractDungeon.potionRng != null) {
+            logger.info("AbstractDungeon.potionRng.counter: " + AbstractDungeon.potionRng.counter);
+            logger.info("AbstractDungeon.cardRng.counter: " + AbstractDungeon.cardRng.counter);
+        }
+        // logger.info("AbstractDungeon.commonCardPool.group:");
+        // for (AbstractCard c : AbstractDungeon.commonCardPool.group) {
+        //     logger.info("  " + c.cardID);
+        // }
+        // logger.info("AbstractDungeon.uncommonCardPool.group:");
+        // for (AbstractCard c : AbstractDungeon.uncommonCardPool.group) {
+        //     logger.info("  " + c.cardID);
+        // }
+        // logger.info("AbstractDungeon.rareCardPool.group:");
+        // for (AbstractCard c : AbstractDungeon.rareCardPool.group) {
+        //     logger.info("  " + c.cardID);
+        // }
+        // logger.info("AbstractDungeon.colorlessCardPool.group:");
+        // for (AbstractCard c : AbstractDungeon.colorlessCardPool.group) {
+        //     logger.info("  " + c.cardID);
+        // }
+        // logger.info("AbstractDungeon.curseCardPool.group:");
+        // for (AbstractCard c : AbstractDungeon.curseCardPool.group) {
+        //     logger.info("  " + c.cardID);
+        // }
+    }
+
+    private static void executeDebuginfoCommand() {
+        dumpDebugInfo();
     }
 
     private static void executePlayCommand(String[] tokens) throws InvalidCommandException {

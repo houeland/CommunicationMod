@@ -191,6 +191,7 @@ public class CommunicationMod implements PostInitializeSubscriber, PostUpdateSub
 
     private static void sendGameState() {
         String state = GameStateConverter.getCommunicationState();
+        CommandExecutor.dumpDebugInfo();
         sendMessage(state);
     }
 

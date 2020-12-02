@@ -32,7 +32,7 @@ public class DataReader implements Runnable{
                     inputBuffer.append((char) nextChar);
                 }
                 if (inputBuffer.length() > 0) {
-                    logger.info("Received message: " + inputBuffer.toString());
+                    //logger.info("Received message: " + inputBuffer.toString());
                     queue.put(inputBuffer.toString());
                 }
             } catch(IOException e){

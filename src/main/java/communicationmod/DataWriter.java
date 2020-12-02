@@ -23,7 +23,7 @@ public class DataWriter implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 message = this.queue.take();
-                logger.info("Sending message: " + message);
+                //logger.info("Sending message: " + message);
                 stream.write(message.getBytes());
                 stream.write('\n');
                 stream.flush();
